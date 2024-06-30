@@ -7,5 +7,5 @@ from university.models import Detail
 class DetailAdmin(admin.ModelAdmin):
     list_display = ["id", "title", 'subtitle']
     list_display_links = ["id"]
-    search_fields = ["title", "numeric"]
+    search_fields = ["title", "subtitle"]
     list_per_page = 20

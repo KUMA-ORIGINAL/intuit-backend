@@ -9,7 +9,7 @@ services:
       - .env.prod
     container_name: backend
     restart: unless-stopped
-    command: gunicorn --preload server.wsgi.application -b 0.0.0.0:8000 --timeout 5
+    command: gunicorn --preload server.wsgi -b 0.0.0.0:8000 --timeout 5
     expose:
       - 8000
     volumes:

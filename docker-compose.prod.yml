@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile.prod
     env_file:
       - .env.prod
-    container_name: makala_box
+    container_name: backend
     restart: unless-stopped
     command: gunicorn --reload server.wsgi.application  -b 0.0.0.0:8000 --timeout 5
     expose:

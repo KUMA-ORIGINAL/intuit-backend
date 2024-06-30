@@ -24,5 +24,5 @@ class StudentSpeakAdmin(admin.ModelAdmin):
     filter_horizontal = [ "faculty", 'education_level' ]
 
     def get_photo(self, object):
-        if object.photo:
+        if object.preview:
             return mark_safe(f"<img src='{object.preview.url}' height=80>")

@@ -7,6 +7,7 @@ from .serializers import PostReadSerializer
 @extend_schema(tags=['News'])
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostReadSerializer
+    lookup_field = 'slug'
 
     def get_queryset(self):
         return Post.objects.filter(status='active')

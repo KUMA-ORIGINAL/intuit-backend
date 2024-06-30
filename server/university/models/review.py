@@ -23,7 +23,7 @@ class StudentReview(models.Model):
 
 class StudentSpeak(models.Model):
     name = models.CharField(verbose_name='ФИО', max_length=255)
-    description = models.TextField(verbose_name='Описание')
+    description = models.CharField(verbose_name='Описание', max_length=255)
     preview = models.ImageField(verbose_name='Фото', upload_to='students/reviews-preview',
                                 help_text='Фото для предварительного просмотра')
     video_url = models.URLField(verbose_name="Ссылка на видео", max_length=255)

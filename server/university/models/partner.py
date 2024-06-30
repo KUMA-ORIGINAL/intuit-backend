@@ -6,7 +6,8 @@ class Partner(models.Model):
     logo = models.FileField(verbose_name="Логотип", upload_to="partners/logo/")
     faculty = models.ManyToManyField('Faculty',
                                      verbose_name="Институты",
-                                     related_name="partners")
+                                     related_name="partners",
+                                     blank=True)
 
     class Meta:
         ordering = ("title",)

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from university.models.partner import Partner
+from university_additions.models.partner import Partner
 
 
 class PartnerSerializer(serializers.ModelSerializer):

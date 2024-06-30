@@ -70,7 +70,8 @@ INSTALLED_APPS = [
     'ckeditor',
 
     'news.apps.NewsConfig',
-    'university.apps.UniversityConfig'
+    'university.apps.UniversityConfig',
+    'university_additions.apps.UniversityAdditionsConfig'
 ]
 
 MIDDLEWARE = [

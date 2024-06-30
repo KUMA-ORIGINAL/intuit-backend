@@ -1,8 +1,8 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 
-from university.models import Partner
-from university.serializers.partner import PartnerSerializer
+from university_additions.models import Partner
+from university_additions.serializers.partner import PartnerSerializer
 
 
 @extend_schema(tags=['Partners'])

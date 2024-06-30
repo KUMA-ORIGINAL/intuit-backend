@@ -1,16 +1,18 @@
 from django.db import models
 
+from university.models import Faculty, EducationLevel
+
 
 class StudentReview(models.Model):
     name = models.CharField(verbose_name='ФИО', max_length=250)
     description = models.TextField(verbose_name='Описание')
     photo = models.ImageField(verbose_name='Фото', upload_to='students/reviews')
     faculty = models.ManyToManyField(verbose_name="Институты",
-                                     to='Faculty',
+                                     to=Faculty,
                                      related_name="student_reviews",
                                      null=True, blank=True)
     education_level = models.ManyToManyField(verbose_name='Уровни образования',
-                                             to='EducationLevel',
+                                             to=EducationLevel,
                                              null=True, blank=True)
 
     class Meta:
@@ -28,11 +30,11 @@ class StudentSpeak(models.Model):
                                 help_text='Фото для предварительного просмотра')
     video_url = models.URLField(verbose_name="Ссылка на видео", max_length=255)
     faculty = models.ManyToManyField(verbose_name="Институты",
-                                     to='Faculty',
+                                     to=Faculty,
                                      related_name="student_speakers",
                                      null=True, blank=True)
     education_level = models.ManyToManyField(verbose_name='Уровни образования',
-                                             to='EducationLevel',
+                                             to=EducationLevel,
                                              blank=True,
                                              null=True)
 

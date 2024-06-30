@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from university.models.partner import Partner
+from university_additions.models.partner import Partner
 
 
 @admin.register(Partner)

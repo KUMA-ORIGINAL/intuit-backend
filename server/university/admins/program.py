@@ -12,6 +12,7 @@ class ProgramAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["title"]}
     list_per_page = 20
     readonly_fields = ["get_photo"]
+    filter_horizontal = [ "faculty", 'education_level']
 
     def get_photo(self, object):
         if object.photo:

@@ -6,13 +6,12 @@ from university.models.faculty import Faculty
 
 @admin.register(Faculty)
 class FacultyAdmin(admin.ModelAdmin):
-    list_display = ['title', "get_photo"]
+    list_display = ['id', 'title', "get_photo"]
     search_fields = ["title"]
-    list_filter = ["title"]
     prepopulated_fields = {"slug": ["title"]}
     list_per_page = 20
     readonly_fields = ["get_photo"]
 
     def get_photo(self, object):
-        if object.photo:
-            return mark_safe(f"<img src='{object.photo.url}' height=80>")
+        if object.banner:
+            return mark_safe(f"<img src='{object.banner.url}' height=80>")

@@ -10,14 +10,12 @@ class Program(models.Model):
     description = RichTextField(verbose_name="Описание", default="Описание")
     photo = models.ImageField(verbose_name="Фото", upload_to='programs')
 
-    education_level = models.ForeignKey('EducationLevel',
-                                        verbose_name="Уровень образования",
-                                        on_delete=models.CASCADE)
-    faculty = models.ForeignKey('Faculty',
-                                verbose_name="Факультет",
-                                on_delete=models.CASCADE)
-    detail = models.ManyToManyField(to="Detail",
-                                    verbose_name="Детали")
+    education_level = models.ManyToManyField('EducationLevel',
+                                        verbose_name="Уровень образования",)
+    faculty = models.ManyToManyField('Faculty',
+                                verbose_name="Факультет")
+    # detail = models.ManyToManyField(to="Detail",
+    #                                 verbose_name="Детали")
 
     class Meta:
         ordering = ("title",)

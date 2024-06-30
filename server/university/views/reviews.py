@@ -2,8 +2,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 
-from university.models.review import StudentReview, StudentSpeak
-from university.serializers.review import StudentReviewSerializer, StudentSpeakSerializer
+from university.models.reviews import StudentReview, StudentSpeak
+from university.serializers.reviews import StudentReviewSerializer, StudentSpeakSerializer
 
 
 @extend_schema(tags=['Reviews'])

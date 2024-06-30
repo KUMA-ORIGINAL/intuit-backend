@@ -16,6 +16,7 @@ from university.serializers.staff import StaffSerializer
 )
 class StaffViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = StaffSerializer
+    lookup_field = 'slug'
 
     def get_queryset(self):
         return Staff.objects.all()

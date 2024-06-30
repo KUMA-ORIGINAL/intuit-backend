@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from university.models.review import StudentReview, StudentSpeak
+from university.models.reviews import StudentReview, StudentSpeak
 
 
 @admin.register(StudentReview)

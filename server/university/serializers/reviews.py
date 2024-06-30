@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from university.models.review import StudentReview, StudentSpeak
+from university.models.reviews import StudentReview, StudentSpeak
 
 
 class StudentReviewSerializer(serializers.ModelSerializer):

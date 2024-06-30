@@ -16,6 +16,7 @@ from university.serializers.education_level import EducationLevelSerializer
 )
 class EducationLevelViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = EducationLevelSerializer
+    lookup_field = 'slug'
 
     def get_queryset(self):
         return EducationLevel.objects.all()

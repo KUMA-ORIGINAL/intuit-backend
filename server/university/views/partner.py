@@ -5,7 +5,7 @@ from university.models import Partner
 from university.serializers.partner import PartnerSerializer
 
 
-@extend_schema(tags=['Partner'])
+@extend_schema(tags=['Partners'])
 @extend_schema_view(
     list=extend_schema(
         summary='Получить список партнеров'

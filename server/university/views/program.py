@@ -16,6 +16,7 @@ from university.serializers.program import ProgramSerializer
 )
 class ProgramViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProgramSerializer
+    lookup_field = 'slug'
 
     def get_queryset(self):
         return Program.objects.all()

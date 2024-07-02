@@ -1,7 +1,12 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from university.models.education_level import EducationLevel
+from university.models.education_level import EducationLevel, AdmissionEligibility
+
+
+@admin.register(AdmissionEligibility)
+class AdmissionEligibilityAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
 
 
 @admin.register(EducationLevel)

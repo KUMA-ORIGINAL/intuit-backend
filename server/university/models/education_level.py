@@ -1,6 +1,17 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 
+class AdmissionEligibility(models.Model):
+    name = models.CharField(verbose_name="Название", max_length=100)
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name = "Допуск к поступлению"
+        verbose_name_plural = "Допуск к поступлениям"
+
+    def __str__(self):
+        return self.name
+
 
 class EducationLevel(models.Model):
     title = models.CharField(verbose_name="Название", max_length=255)
@@ -18,6 +29,9 @@ class EducationLevel(models.Model):
     study_period = models.CharField(verbose_name="Срок обучения", max_length=255)
     employment = models.CharField(verbose_name="Трудоустройство", max_length=255)
     diploma = models.CharField(verbose_name="Диплом", max_length=255)
+
+    admission_eligibility = models.ManyToManyField(AdmissionEligibility,
+                                                   verbose_name="Подходимость для поступления")
 
     # detail = models.ManyToManyField("Detail",
     #                                 verbose_name="Детали")

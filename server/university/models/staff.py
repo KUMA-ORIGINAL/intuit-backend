@@ -31,6 +31,12 @@ class Staff(models.Model):
     description = models.TextField(verbose_name="Описание", blank=True)
     image = models.FileField(verbose_name="Изображение", upload_to="faculty/images/teachers")
 
+    whatsapp = models.CharField(
+        verbose_name="whatsApp",
+        help_text='Введите ссылку на профиль (не обязательное полое)',
+        max_length=100,
+        blank=True)
+
     facebook = models.CharField(
         verbose_name="facebook",
         help_text='Введите ссылку на профиль (не обязательное полое)',

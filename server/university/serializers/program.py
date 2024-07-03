@@ -36,3 +36,10 @@ class ProgramSerializer(serializers.ModelSerializer):
     class Meta:
         model = Program
         fields = '__all__'
+
+
+class ProgramListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Program
+        fields = ('title', 'slug', 'education_level', 'faculty')

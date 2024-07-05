@@ -13,11 +13,15 @@ class TrainingProgramItemInline(admin.TabularInline):
 class ProgramSkillsInline(admin.TabularInline):
     model = ProgramSkills.program.through
     extra = 1
+    verbose_name = 'Навык который изучишь в программе'
+    verbose_name_plural = 'Навыки которые изучишь в программе'
 
 
 class ProgramToolsInline(admin.TabularInline):
     model = ProgramTools.program.through
     extra = 1
+    verbose_name = 'Инструмент который изучишь в программе'
+    verbose_name_plural = 'Инструменты которые изучишь в программе'
 
 
 @admin.register(Program)
@@ -33,7 +37,7 @@ class ProgramAdmin(admin.ModelAdmin):
 
     def get_photo(self, obj):
         if obj.photo:
-            return mark_safe(f"<img src='{obj.photo.url}' height=80>")
+            return mark_safe(f"<img src='{obj.photo.url}' height=100>")
         return ''
     get_photo.short_description = 'Фото'
 

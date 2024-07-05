@@ -176,7 +176,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-CSRF_TRUSTED_ORIGINS = ["https://api.intuit.com"]
+CSRF_TRUSTED_ORIGINS = ["https://intuit.makalabox.com"]
 
 DOMAIN = 'intuit.com'
 

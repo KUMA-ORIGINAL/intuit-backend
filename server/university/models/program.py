@@ -6,10 +6,10 @@ class Program(models.Model):
     title = models.CharField(verbose_name="Название", max_length=250)
     slug = models.SlugField(verbose_name="ссылка")
     photo = models.FileField(verbose_name="Главная фотка", upload_to='programs')
-    text = models.CharField(verbose_name="Заголовок",
+    text = models.TextField(verbose_name="Заголовок",
                             max_length=250,
                             blank=True)
-    subtext = RichTextField(verbose_name="Описание", default="Описание")
+    subtext = models.TextField(verbose_name="Описание", default="Описание")
     text_photo = models.FileField(verbose_name="Фото", upload_to='programs')
 
     study_period = models.CharField(verbose_name="Срок обучения", max_length=255)

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from university.models import EducationLevel
 from university.models.program import (Program, TrainingProgram, TrainingProgramItem,
                                        ProgramTools, ProgramSkills)
 
@@ -32,6 +33,7 @@ class ProgramSerializer(serializers.ModelSerializer):
     training_programs = TrainingProgramSerializer(many=True, read_only=True)
     skills = ProgramSkillsSerializer(many=True, read_only=True)
     tools = ProgramToolsSerializer(many=True, read_only=True)
+    education_level = serializers.SlugRelatedField(many=True, read_only=True, slug_field='title')
 
     class Meta:
         model = Program

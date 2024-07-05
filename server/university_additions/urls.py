@@ -13,6 +13,9 @@ router.register(r"student-reviews",
 router.register(r"student-speakers",
                 views.StudentSpeakViewSet,
                 basename='student-speakers')
+router.register(r'university-info',
+                views.UniversityInfoViewSet,
+                basename='university-info')
 
 urlpatterns = [
     path('', include(router.urls)),

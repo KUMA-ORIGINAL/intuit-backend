@@ -78,6 +78,7 @@ class ProgramSkills(models.Model):
 class ProgramTools(models.Model):
     name = models.CharField(verbose_name='Инструмент', max_length=255)
     logo = models.FileField(verbose_name='Лого инструмента', upload_to='programs/program-tools/')
+    description = models.CharField(verbose_name='Описание инструмента', max_length=255)
     program = models.ManyToManyField(Program,
                                      verbose_name="Программа",
                                      related_name="tools",

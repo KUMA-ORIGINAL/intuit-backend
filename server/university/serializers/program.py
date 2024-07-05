@@ -20,7 +20,7 @@ class TrainingProgramSerializer(serializers.ModelSerializer):
 class ProgramToolsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgramTools
-        fields = ('name', 'logo')
+        fields = ('name', 'description','logo')
 
 
 class ProgramSkillsSerializer(serializers.ModelSerializer):

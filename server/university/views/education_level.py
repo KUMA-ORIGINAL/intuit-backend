@@ -2,7 +2,8 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 
 from university.models import EducationLevel
-from university.serializers.education_level import EducationLevelSerializer
+from university.serializers.education_level import EducationLevelSerializer, \
+    EducationLevelListSerializer
 
 
 @extend_schema(tags=['Education Level'])
@@ -20,3 +21,8 @@ class EducationLevelViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return EducationLevel.objects.all()
+
+    def get_serializer_class(self):
+        if self.action =='retrieve':
+            return EducationLevelSerializer
+        return EducationLevelListSerializer

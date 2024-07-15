@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 
@@ -15,6 +16,8 @@ from university.serializers.program import ProgramSerializer, ProgramListSeriali
     )
 )
 class ProgramViewSet(viewsets.ReadOnlyModelViewSet):
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('faculty', 'education_level')
     lookup_field = 'slug'
 
     def get_queryset(self):

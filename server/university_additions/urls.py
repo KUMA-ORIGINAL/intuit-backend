@@ -16,6 +16,9 @@ router.register(r"student-speakers",
 router.register(r'university-info',
                 views.UniversityInfoViewSet,
                 basename='university-info')
+router.register(r'user-application',
+                views.UserApplicationViewSet,
+                basename='user-application')
 
 urlpatterns = [
     path('', include(router.urls)),

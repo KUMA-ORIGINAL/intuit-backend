@@ -26,6 +26,7 @@ class EducationLevel(models.Model):
     study_period = models.CharField(verbose_name="Срок обучения", max_length=255)
     employment = models.CharField(verbose_name="Трудоустройство", max_length=255)
     diploma = models.CharField(verbose_name="Диплом", max_length=255)
+    diploma_photo = models.FileField(verbose_name="Задняя фотка диплома", upload_to='education-levels/diploma')
 
     faculty_count = models.IntegerField(verbose_name="Количество факультетов",
                                         default=0,

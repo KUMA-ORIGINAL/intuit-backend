@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from university.models import EducationLevel
 from university.models.program import (Program, TrainingProgram, TrainingProgramItem,
-                                       ProgramTools, ProgramSkills)
+                                       ProgramTools, ProgramSkills, ProgramProfessions)
 
 class TrainingProgramItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,11 +28,17 @@ class ProgramSkillsSerializer(serializers.ModelSerializer):
         model = ProgramSkills
         fields = ('name',)
 
+class ProgramProfessionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProgramProfessions
+        fields = ('name', 'description', 'photo')
+
 
 class ProgramSerializer(serializers.ModelSerializer):
     training_programs = TrainingProgramSerializer(many=True, read_only=True)
     skills = ProgramSkillsSerializer(many=True, read_only=True)
     tools = ProgramToolsSerializer(many=True, read_only=True)
+    professions = ProgramProfessionsSerializer(many=True, read_only=True)
     education_level = serializers.SlugRelatedField(many=True, read_only=True, slug_field='title')
 
     class Meta:

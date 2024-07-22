@@ -91,3 +91,19 @@ class ProgramTools(models.Model):
     def __str__(self):
         return self.name
 
+
+class ProgramProfessions(models.Model):
+    name = models.CharField(verbose_name='Профессия', max_length=255)
+    photo = models.FileField(verbose_name='Фото', upload_to='programs/professions/')
+    description = models.TextField(verbose_name='Описание профессии')
+    program = models.ManyToManyField(Program,
+                                     verbose_name="Программа",
+                                     related_name="professions",
+                                     blank=True)
+
+    class Meta:
+        verbose_name = "Профессия программы"
+        verbose_name_plural = "Профессии программы"
+
+    def __str__(self):
+        return self.name

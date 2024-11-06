@@ -14,6 +14,10 @@ class Faculty(models.Model):
 
     education_level = models.ManyToManyField('EducationLevel',
                                         verbose_name="Уровень образования")
+
+    program_count = models.PositiveIntegerField(verbose_name="Количество программ",
+                                                default=0,
+                                                blank=True)
     # detail = models.ManyToManyField(to="Detail",
     #                                 verbose_name="Детали")
 

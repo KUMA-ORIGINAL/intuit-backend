@@ -4,7 +4,7 @@ from django.db import models
 class Faculty(models.Model):
     title = models.CharField(verbose_name="Название", max_length=255)
     slug = models.SlugField(verbose_name="ссылка")
-    banner = models.FileField(verbose_name="Баннер")
+    banner = models.FileField(verbose_name="Баннер", upload_to='faculties')
 
     subtitle = models.CharField(verbose_name="Заголовок", max_length=250,
                                 blank=True)

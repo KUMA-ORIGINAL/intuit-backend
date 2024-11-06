@@ -3,12 +3,15 @@ from django.contrib import admin
 
 from ckeditor.widgets import CKEditorWidget
 from django.utils.safestring import mark_safe
+from modeltranslation.admin import TranslationAdmin
 
 from .models import Post, Image, File, Category
 
 
 class PostForm(forms.ModelForm):
-    description = forms.CharField(empty_value='', widget=CKEditorWidget())
+    description_ru = forms.CharField(empty_value='', widget=CKEditorWidget())
+    description_en = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
+    description_ky = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
 
     class Meta:
         model = Post
@@ -16,7 +19,7 @@ class PostForm(forms.ModelForm):
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(TranslationAdmin):
     form = PostForm
     list_display = ["title", "status", "date"]
     list_filter = ['date', 'status', 'categories']

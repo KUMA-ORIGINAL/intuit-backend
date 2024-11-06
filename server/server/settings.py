@@ -55,6 +55,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'jazzmin',
 
     'django.contrib.admin',
@@ -82,6 +83,7 @@ MIDDLEWARE = [
 
     'corsheaders.middleware.CorsMiddleware',
     'djangorestframework_camel_case.middleware.CamelCaseMiddleWare',
+    'server.middleware.LanguageMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -183,6 +185,21 @@ CSRF_TRUSTED_ORIGINS = ["https://intuit.makalabox.com"]
 DOMAIN = 'intuit.com'
 
 SITE_NAME = 'makalabox.team@gmail.com'
+
+LANGUAGES = (
+    ('ru', 'Russian'),
+    ('en', 'English'),
+    ('ky', 'Kyrgyz'),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+MODELTRANSLATION_LANGUAGES = ('ru', 'en', 'ky')
+MODELTRANSLATION_FALLBACK_LANGUAGES = {
+    'default': ('ru',),
+    'en': ('ru', 'ky'),  # Для английского fallback на русский и кыргызский
+    'ky': ('ru',),  # Для кыргызского fallback на русский
+}
+MODELTRANSLATION_AUTO_POPULATE = True
 
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = env('EMAIL_HOST_USER')

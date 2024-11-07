@@ -15,8 +15,6 @@ services:
       - '8000:8000'
     depends_on:
       - database
-    networks:
-      - database
 
   database:
     container_name: database_container
@@ -27,8 +25,6 @@ services:
       - '5555:5432'
     volumes:
       - database-storage:/var/lib/postgresql/data
-    networks:
-      - database
 
   pgadmin:
     container_name: pgadmin_container
@@ -47,13 +43,9 @@ services:
         limits:
           cpus: '0.5'
           memory: 1G
-    networks:
+    depends_on:
       - database
 
 volumes:
   database-storage:
   pgadmin-data:
-
-networks:
-  database:
-    driver: bridge

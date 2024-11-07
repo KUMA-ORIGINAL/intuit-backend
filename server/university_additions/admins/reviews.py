@@ -7,7 +7,8 @@ from university_additions.models.reviews import StudentReview, StudentSpeak
 
 @admin.register(StudentReview)
 class StudentReviewAdmin(TranslationAdmin):
-    list_display = ['name', 'get_photo']
+    list_display = ['id', 'name', 'get_photo']
+    list_display_links = ['id', 'name']
     readonly_fields = ["get_photo"]
     search_fields = ["name"]
     filter_horizontal = [ "faculty", 'education_level' ]
@@ -28,7 +29,8 @@ class StudentReviewAdmin(TranslationAdmin):
 
 @admin.register(StudentSpeak)
 class StudentSpeakAdmin(TranslationAdmin):
-    list_display = ['name', 'get_photo']
+    list_display = ['id', 'name', 'get_photo']
+    list_display_links = ['id', 'name']
     readonly_fields = ["get_photo"]
     search_fields = ["name"]
     filter_horizontal = [ "faculty", 'education_level' ]

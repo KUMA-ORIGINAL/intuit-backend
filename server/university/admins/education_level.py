@@ -8,6 +8,7 @@ from university.models.education_level import EducationLevel, AdmissionEligibili
 @admin.register(AdmissionEligibility)
 class AdmissionEligibilityAdmin(TranslationAdmin):
     list_display = ['id', 'name']
+    list_display_links = ['id', 'name']
 
     class Media:
         js = (
@@ -23,6 +24,7 @@ class AdmissionEligibilityAdmin(TranslationAdmin):
 @admin.register(EducationLevel)
 class EducationLevelAdmin(TranslationAdmin):
     list_display = ['id', 'title', "get_photo"]
+    list_display_links = ['id', 'title']
     search_fields = ["title"]
     list_filter = ["title"]
     prepopulated_fields = {"slug": ["title"]}

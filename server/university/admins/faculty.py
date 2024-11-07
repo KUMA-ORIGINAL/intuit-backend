@@ -8,6 +8,7 @@ from university.models.faculty import Faculty
 @admin.register(Faculty)
 class FacultyAdmin(TranslationAdmin):
     list_display = ['id', 'title', "get_photo"]
+    list_display_links = ['id', 'title',]
     search_fields = ["title"]
     prepopulated_fields = {"slug": ["title"]}
     list_per_page = 20

@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from modeltranslation.admin import TranslationAdmin
 
 from university.models.faculty import Faculty
 
 
 @admin.register(Faculty)
-class FacultyAdmin(admin.ModelAdmin):
+class FacultyAdmin(TranslationAdmin):
     list_display = ['id', 'title', "get_photo"]
     search_fields = ["title"]
     prepopulated_fields = {"slug": ["title"]}
@@ -15,3 +16,13 @@ class FacultyAdmin(admin.ModelAdmin):
     def get_photo(self, object):
         if object.banner:
             return mark_safe(f"<img src='{object.banner.url}' height=80>")
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }

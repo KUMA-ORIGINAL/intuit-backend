@@ -46,13 +46,14 @@ class PostAdmin(TranslationAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["title"]
+class CategoryAdmin(TranslationAdmin):
+    list_display = ['id', "title"]
+    list_display_links = ('title',)
     prepopulated_fields = {"slug": ("title",)}
 
 
 @admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
+class ImageAdmin(TranslationAdmin):
     list_display = ["title", 'image', 'photo']
     list_filter = ['title']
     search_fields = ['title']
@@ -63,5 +64,5 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 @admin.register(File)
-class FileAdmin(admin.ModelAdmin):
+class FileAdmin(TranslationAdmin):
     list_display = ["title", "file"]

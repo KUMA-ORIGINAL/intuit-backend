@@ -18,6 +18,8 @@ services:
       - media_volume:/app/application/media
     depends_on:
       - database
+    networks:
+      - database
 
   database:
     image: postgres:16.2-alpine3.18
@@ -25,6 +27,28 @@ services:
     restart: unless-stopped
     volumes:
       - database-storage:/var/lib/postgresql/data
+    networks:
+      - database
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4:7.2
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@mail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    networks:
+      - database
 
   nginx:
     build: ./nginx
@@ -51,3 +75,8 @@ volumes:
   database-storage:
   static_volume:
   media_volume:
+  pgadmin-data:
+
+networks:
+  database:
+    driver: bridge

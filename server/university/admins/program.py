@@ -35,6 +35,7 @@ class ProgramProfessionsInline(admin.TabularInline):
 @admin.register(Program)
 class ProgramAdmin(TranslationAdmin):
     list_display = ['id', 'title', 'get_photo']
+    list_display_links = ['id', 'title']
     search_fields = ['title']
     list_filter = ['title']
     prepopulated_fields = {'slug': ['title']}

@@ -29,5 +29,5 @@ def update_faculty_program_count(sender, instance, action, reverse, model, pk_se
     if action in ['post_add', 'post_remove', 'post_clear']:
         for faculty_id in pk_set:
             faculty = Faculty.objects.get(pk=faculty_id)
-            faculty.program_count = Program.objects.filter(faculties=faculty).count()
+            faculty.program_count = Program.objects.filter(faculty=faculty).count()
             faculty.save()

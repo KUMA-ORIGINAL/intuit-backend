@@ -260,3 +260,8 @@ LOGGING = {
         'handlers': ['console'],
     }
 }
+
+JAZZMIN_SETTINGS = {
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {"university.trainingprogram": "single"},
+}

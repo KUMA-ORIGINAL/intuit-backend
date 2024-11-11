@@ -9,7 +9,7 @@ class Program(models.Model):
     text = models.TextField(verbose_name="Заголовок",
                             max_length=250,
                             blank=True)
-    subtext = models.TextField(verbose_name="Описание", default="Описание")
+    subtext = models.TextField(verbose_name="Описание")
     text_photo = models.FileField(verbose_name="Фото", upload_to='programs')
 
     study_period = models.CharField(verbose_name="Срок обучения", max_length=255)

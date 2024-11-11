@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from modeltranslation.admin import TranslationAdmin
+from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 
 from university.models.program import Program, TrainingProgram, TrainingProgramItem, ProgramSkills, \
     ProgramTools, ProgramProfessions
 
 
-class TrainingProgramItemInline(admin.TabularInline):
+class TrainingProgramItemInline(TranslationTabularInline):
     model = TrainingProgramItem
     extra = 1
 

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from university.models import EducationLevel
+from university.models import EducationLevel, Faculty
 from university.models.program import (Program, TrainingProgram, TrainingProgramItem,
                                        ProgramTools, ProgramSkills, ProgramProfessions)
 
@@ -45,9 +45,23 @@ class ProgramSerializer(serializers.ModelSerializer):
         model = Program
         fields = '__all__'
 
+class EducationLevelSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = EducationLevel
+        fields = ('id', 'title', 'slug')
+
+class FacultySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Faculty
+        fields = ('id', 'title', 'slug')
+
 
 class ProgramListSerializer(serializers.ModelSerializer):
+    education_level = EducationLevelSerializer(many=True, read_only=True)
+    faculty = FacultySerializer(many=True, read_only=True)
 
     class Meta:
         model = Program
-        fields = ('title', 'slug', 'education_level', 'faculty')
+        fields = ('id', 'title', 'slug', 'education_level', 'faculty')

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin
+from modeltranslation.admin import TabbedTranslationAdmin
 
 from university.models.faculty import Faculty
 

@@ -3,7 +3,7 @@ from django.contrib import admin
 
 from ckeditor.widgets import CKEditorWidget
 from django.utils.safestring import mark_safe
-from modeltranslation.admin import TranslationAdmin
+from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin
 
 from .models import Post, Image, File, Category
 
@@ -19,7 +19,7 @@ class PostForm(forms.ModelForm):
 
 
 @admin.register(Post)
-class PostAdmin(TranslationAdmin):
+class PostAdmin(TabbedTranslationAdmin):
     form = PostForm
     list_display = ["title", "status", "date"]
     list_filter = ['date', 'status', 'categories']

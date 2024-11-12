@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
+from modeltranslation.admin import TranslationAdmin, TranslationTabularInline, \
+    TabbedTranslationAdmin
 
 from university.models.program import Program, TrainingProgram, TrainingProgramItem, ProgramSkills, \
     ProgramTools, ProgramProfessions
@@ -33,7 +34,7 @@ class ProgramProfessionsInline(admin.TabularInline):
 
 
 @admin.register(Program)
-class ProgramAdmin(TranslationAdmin):
+class ProgramAdmin(TabbedTranslationAdmin):
     list_display = ['id', 'title', 'get_photo']
     list_display_links = ['id', 'title']
     search_fields = ['title']
@@ -50,15 +51,6 @@ class ProgramAdmin(TranslationAdmin):
         return ''
     get_photo.short_description = 'Фото'
 
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
 
 
 @admin.register(TrainingProgram)
@@ -70,7 +62,7 @@ class TrainingProgramAdmin(admin.ModelAdmin):
 
 
 @admin.register(ProgramSkills)
-class ProgramSkillsAdmin(TranslationAdmin):
+class ProgramSkillsAdmin(TabbedTranslationAdmin):
     list_display = ['id', 'name', 'get_programs']
     list_display_links = ['id', 'name']
     search_fields = ['name']
@@ -80,19 +72,10 @@ class ProgramSkillsAdmin(TranslationAdmin):
         return ", ".join([p.title for p in obj.program.all()])
     get_programs.short_description = 'Программы'
 
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
 
 
 @admin.register(ProgramTools)
-class ProgramToolsAdmin(TranslationAdmin):
+class ProgramToolsAdmin(TabbedTranslationAdmin):
     list_display = ['id', 'name', 'get_logo', 'get_programs']
     list_display_links = ['id', 'name']
     search_fields = ['name']
@@ -108,19 +91,9 @@ class ProgramToolsAdmin(TranslationAdmin):
         return ''
     get_logo.short_description = 'Лого инструмента'
 
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
-
 
 @admin.register(ProgramProfessions)
-class ProgramProfessionsAdmin(TranslationAdmin):
+class ProgramProfessionsAdmin(TabbedTranslationAdmin):
     list_display = ['id', 'name', 'get_photo', 'get_programs']
     list_display_links = ['id', 'name']
     search_fields = ['name']
@@ -135,13 +108,3 @@ class ProgramProfessionsAdmin(TranslationAdmin):
             return mark_safe(f"<img src='{obj.photo.url}' height=80>")
         return ''
     get_photo.short_description = 'Фото профессии'
-
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }

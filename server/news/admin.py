@@ -26,7 +26,7 @@ class PostAdmin(TabbedTranslationAdmin):
     ordering = ['-status', '-date']
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ['title', 'description']
-    filter_horizontal = ['categories', 'files', 'images']
+    filter_horizontal = ['categories', 'files', 'images', 'faculty']
     date_hierarchy = 'date'
     list_editable = ['status']
     save_on_top = True
@@ -38,7 +38,7 @@ class PostAdmin(TabbedTranslationAdmin):
             'fields': ("banner", "images", "files")
         }),
         ("Параметры", {
-            'fields': ('status', "slug", "date", "categories")
+            'fields': ('status', "slug", "date", "categories", 'faculty')
         }),
 
     )

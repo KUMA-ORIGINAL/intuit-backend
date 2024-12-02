@@ -17,7 +17,9 @@ class Post(models.Model):
     date = models.DateTimeField(verbose_name="Дата", default=timezone.now)
 
     banner = models.FileField(verbose_name="Баннер", upload_to="news/banners/%Y/%m/%d")
-    categories = models.ManyToManyField('Category', related_name='posts', related_query_name="posts", verbose_name='Категории')
+    categories = models.ManyToManyField('Category', related_name='posts', verbose_name='Категории')
+    faculty = models.ManyToManyField('university.Faculty', related_name='posts',
+                                     verbose_name='Категории2')
     images = models.ManyToManyField('Image', related_name='posts', verbose_name='Фотографии',
                                     blank=True)
     files = models.ManyToManyField('File', related_name='posts', verbose_name='Файлы', blank=True)

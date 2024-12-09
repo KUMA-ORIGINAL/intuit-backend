@@ -12,7 +12,7 @@ class PositionSerializer(serializers.ModelSerializer):
 
 
 class StaffSerializer(serializers.ModelSerializer):
-    position = PositionSerializer(many=True)
+    position = PositionSerializer()
 
     class Meta:
         model = Staff

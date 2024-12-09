@@ -185,6 +185,7 @@ CSRF_TRUSTED_ORIGINS = ["https://intuit.makalabox.com"]
 DOMAIN = 'intuit.com'
 
 SITE_NAME = 'makalabox.team@gmail.com'
+SITE_URL = 'https://muit.makalabox.com'
 
 LANGUAGES = (
     ('ru', 'Russian'),

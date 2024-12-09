@@ -45,7 +45,7 @@ class ProgramSerializer(serializers.ModelSerializer):
         model = Program
         fields = '__all__'
 
-class EducationLevelSerializer(serializers.ModelSerializer):
+class ProgramEducationLevelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = EducationLevel
@@ -59,7 +59,7 @@ class FacultySerializer(serializers.ModelSerializer):
 
 
 class ProgramListSerializer(serializers.ModelSerializer):
-    education_level = EducationLevelSerializer(many=True, read_only=True)
+    education_level = ProgramEducationLevelSerializer(many=True, read_only=True)
     faculty = FacultySerializer(many=True, read_only=True)
 
     class Meta:

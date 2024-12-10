@@ -16,6 +16,9 @@ router.register(r"programs",
 router.register(r"staffs",
                 views.StaffViewSet,
                 basename='staffs')
+router.register(r'positions',
+                views.PositionViewSet,
+                basename="positions")
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -30,7 +30,7 @@ class StaffViewSet(viewsets.ReadOnlyModelViewSet):
         summary='Получить список должностей'
     ),
 )
-class StaffViewSet(viewsets.GenericViewSet,
+class PositionViewSet(viewsets.GenericViewSet,
                    mixins.ListModelMixin):
     serializer_class = PositionSerializer
 

@@ -1,9 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema, extend_schema_view
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 
-from university.models.staff import Staff
-from university.serializers.staff import StaffSerializer
+from university.models.staff import Staff, Position
+from university.serializers.staff import StaffSerializer, PositionSerializer
 
 
 @extend_schema(tags=['Staff'])
@@ -23,3 +23,16 @@ class StaffViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return Staff.objects.all()
+
+@extend_schema(tags=['Staff'])
+@extend_schema_view(
+    list=extend_schema(
+        summary='Получить список должностей'
+    ),
+)
+class StaffViewSet(viewsets.GenericViewSet,
+                   mixins.ListModelMixin):
+    serializer_class = PositionSerializer
+
+    def get_queryset(self):
+        return Position.objects.all()

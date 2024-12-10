@@ -8,7 +8,7 @@ class PositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Position
-        fields = ('id', 'title')
+        fields = ('id', 'title', 'level')
 
 
 class StaffSerializer(serializers.ModelSerializer):

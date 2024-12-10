@@ -17,7 +17,7 @@ from university.serializers.staff import StaffSerializer
 )
 class StaffViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('faculty',)
+    filterset_fields = ('faculty', 'position')
     serializer_class = StaffSerializer
     lookup_field = 'slug'
 

@@ -11,6 +11,7 @@ class PartnerAdmin(TranslationAdmin):
     readonly_fields = ["get_logo"]
     search_fields = ["title"]
     filter_horizontal = ["faculty"]
+    list_per_page = 20
 
     def get_logo(self, object):
         if object.logo:

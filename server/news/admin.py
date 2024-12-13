@@ -30,6 +30,7 @@ class PostAdmin(TabbedTranslationAdmin):
     date_hierarchy = 'date'
     list_editable = ['status']
     save_on_top = True
+    list_per_page = 20
     fieldsets = (
         ("Пост", {
             'fields': ('title', "description",)
@@ -57,6 +58,7 @@ class ImageAdmin(TranslationAdmin):
     list_display = ["title", 'image', 'photo']
     list_filter = ['title']
     search_fields = ['title']
+    list_per_page = 20
 
     def photo(self, object):
         if object.image:

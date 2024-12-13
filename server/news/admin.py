@@ -23,7 +23,7 @@ class PostAdmin(TabbedTranslationAdmin):
     form = PostForm
     list_display = ["title", "status", "date"]
     list_filter = ['date', 'status', 'categories']
-    ordering = ['-status', '-date']
+    ordering = ['-date', 'status',]
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ['title', 'description']
     filter_horizontal = ['categories', 'files', 'images', 'faculty']

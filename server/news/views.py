@@ -1,10 +1,15 @@
-from django.utils import translation
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
+from rest_framework.pagination import PageNumberPagination
 
 from .models import Post
 from .serializers import PostSerializer
+
+class PostPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 @extend_schema(tags=['News'])
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
@@ -12,6 +17,7 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ('faculty',)
     serializer_class = PostSerializer
     lookup_field = 'slug'
+    pagination_class = PostPagination
 
     def get_queryset(self):
         return Post.objects.filter(status='active')

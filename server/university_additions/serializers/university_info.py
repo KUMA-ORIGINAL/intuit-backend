@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from university_additions.models.university_info import UniversityInfo
+from ..models import UniversityInfo
 
 
 class UniversityInfoSerializer(serializers.ModelSerializer):

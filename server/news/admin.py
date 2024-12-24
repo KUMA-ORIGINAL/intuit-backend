@@ -31,6 +31,7 @@ class PostAdmin(TabbedTranslationAdmin):
     list_editable = ['status']
     save_on_top = True
     list_per_page = 20
+
     fieldsets = (
         ("Пост", {
             'fields': ('title', "description",)

@@ -19,7 +19,7 @@ class Post(models.Model):
     banner = models.FileField(verbose_name="Баннер", upload_to="news/banners/%Y/%m/%d")
     categories = models.ManyToManyField('Category', related_name='posts', verbose_name='Категории')
     faculty = models.ManyToManyField('university.Faculty', related_name='posts',
-                                     verbose_name='Категории2')
+                                     verbose_name='Категории2', blank=True)
     images = models.ManyToManyField('Image', related_name='posts', verbose_name='Фотографии',
                                     blank=True)
     files = models.ManyToManyField('File', related_name='posts', verbose_name='Файлы', blank=True)

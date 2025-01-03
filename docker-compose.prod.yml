@@ -26,23 +26,23 @@ services:
     volumes:
       - database-storage:/var/lib/postgresql/data
 
-  pgadmin:
-    container_name: pgadmin_container
-    image: dpage/pgadmin4:7.2
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "admin@mail.com"
-      PGADMIN_DEFAULT_PASSWORD: "admin"
-      PGADMIN_CONFIG_SERVER_MODE: "False"
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-    ports:
-      - "5050:80"
-    restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 1G
+#  pgadmin:
+#    container_name: pgadmin_container
+#    image: dpage/pgadmin4:7.2
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: "admin@mail.com"
+#      PGADMIN_DEFAULT_PASSWORD: "admin"
+#      PGADMIN_CONFIG_SERVER_MODE: "False"
+#    volumes:
+#      - pgadmin-data:/var/lib/pgadmin
+#    ports:
+#      - "5050:80"
+#    restart: unless-stopped
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.5'
+#          memory: 1G
 
   nginx:
     build: ./nginx
@@ -69,4 +69,4 @@ volumes:
   database-storage:
   static_volume:
   media_volume:
-  pgadmin-data:
+#  pgadmin-data:

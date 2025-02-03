@@ -74,7 +74,8 @@ INSTALLED_APPS = [
 
     'news.apps.NewsConfig',
     'university.apps.UniversityConfig',
-    'university_additions.apps.UniversityAdditionsConfig'
+    'university_additions.apps.UniversityAdditionsConfig',
+    'document_pages.apps.DocumentPagesConfig'
 ]
 
 MIDDLEWARE = [
@@ -264,5 +265,7 @@ LOGGING = {
 
 JAZZMIN_SETTINGS = {
     "changeform_format": "horizontal_tabs",
-    "changeform_format_overrides": {"university.trainingprogram": "single"},
+    "changeform_format_overrides": {"university.trainingprogram": "single",
+                                    'document_pages.documentcollection': 'single'},
 }
+

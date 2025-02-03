@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/news/', include('news.urls')),
     path('api/university/', include('university.urls')),
     path('api/university/', include('university_additions.urls')),
+    path('api/documnet-pages/', include('document_pages.urls')),
 ]
 
 if settings.DEBUG:

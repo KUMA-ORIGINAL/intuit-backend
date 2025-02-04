@@ -1,3 +1,5 @@
+from ckeditor.widgets import CKEditorWidget
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin
@@ -11,8 +13,17 @@ class PositionAdmin(TranslationAdmin):
     list_editable = ["level"]
 
 
+class StaffForm(forms.ModelForm):
+    cv = forms.CharField(empty_value='', widget=CKEditorWidget())
+
+    class Meta:
+        model = Staff
+        fields = '__all__'
+
+
 @admin.register(Staff)
 class StaffAdmin(TabbedTranslationAdmin):
+    form = StaffForm
     search_fields   = ["name" ]
     prepopulated_fields = {"slug": ["name"]}
     list_display = ['id', 'name', 'get_photo', "position"]
@@ -28,4 +39,3 @@ class StaffAdmin(TabbedTranslationAdmin):
         if object.image:
             return mark_safe(f"<img src='{object.image.url}' height=100>")
     get_photo.short_description = "Фото"
-

@@ -1,3 +1,5 @@
+from ckeditor.widgets import CKEditorWidget
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline, \
@@ -33,8 +35,21 @@ class ProgramProfessionsInline(admin.TabularInline):
     verbose_name_plural = 'Профессии которую освоишь в программе'
 
 
+
+
+class ProgramForm(forms.ModelForm):
+    subtext_ru = forms.CharField(empty_value='', widget=CKEditorWidget())
+    subtext_en = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
+    subtext_ky = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
+
+    class Meta:
+        model = Program
+        fields = '__all__'
+
+
 @admin.register(Program)
 class ProgramAdmin(TabbedTranslationAdmin):
+    form = ProgramForm
     list_display = ['id', 'title', 'get_photo']
     list_display_links = ['id', 'title']
     search_fields = ['title']

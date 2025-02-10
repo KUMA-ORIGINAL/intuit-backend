@@ -30,7 +30,6 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ('faculty',)
     serializer_class = EventSerializer
     lookup_field = 'slug'
-    pagination_class = PostPagination
 
     def get_queryset(self):
         return Event.objects.filter(status='active')

@@ -91,20 +91,20 @@ class EventAdmin(TabbedTranslationAdmin):
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ['title', 'description']
     filter_horizontal = [ 'faculty']
-    date_hierarchy = 'created_at'
     list_editable = ['status']
     save_on_top = True
     list_per_page = 20
+    readonly_fields = ['created_at',]
 
     fieldsets = (
         ("Пост", {
-            'fields': ('title', "description",)
+            'fields': ('title', 'slug', "description",)
         }),
         ("Дополнительно", {
             'fields': ("banner",)
         }),
         ("Параметры", {
-            'fields': ('status', "slug", "created_at", 'faculty')
+            'fields': ('status', "created_at", 'faculty')
         }),
 
     )

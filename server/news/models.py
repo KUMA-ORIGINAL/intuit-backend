@@ -72,4 +72,26 @@ class File(models.Model):
         return self.title
 
 
-# class Events(models.Model):
+class Event(models.Model):
+    STATUS_CHOICES = (
+        ("active", "активен"),
+        ("passive", "не активен")
+    )
+
+    status = models.CharField(verbose_name="Статус", choices=STATUS_CHOICES, max_length=15,
+                              default="passive")
+    title = models.CharField(verbose_name="Название", max_length=250)
+    slug = models.SlugField(verbose_name="Ссылка", unique_for_date='date')
+    description = models.TextField(verbose_name="Текст")
+    banner = models.FileField(verbose_name="Баннер", upload_to="events/banners/%Y/%m/%d")
+    faculty = models.ManyToManyField('university.Faculty', related_name='events',
+                                     verbose_name='Категории2', blank=True)
+    created_at = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created_at',)
+        verbose_name = "Мероприятие"
+        verbose_name_plural = "Мероприятия"
+
+    def __str__(self):
+        return self.title

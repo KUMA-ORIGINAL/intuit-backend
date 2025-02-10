@@ -5,7 +5,7 @@ from ckeditor.widgets import CKEditorWidget
 from django.utils.safestring import mark_safe
 from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin
 
-from .models import Post, Image, File, Category
+from .models import Post, Image, File, Category, Event
 
 
 class PostForm(forms.ModelForm):
@@ -69,3 +69,43 @@ class ImageAdmin(TranslationAdmin):
 @admin.register(File)
 class FileAdmin(TranslationAdmin):
     list_display = ["title", "file"]
+
+
+
+class EventForm(forms.ModelForm):
+    description_ru = forms.CharField(empty_value='', widget=CKEditorWidget())
+    description_en = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
+    description_ky = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
+
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+
+@admin.register(Event)
+class EventAdmin(TabbedTranslationAdmin):
+    form = EventForm
+    list_display = ["title", "status", "created_at"]
+    list_filter = ['created_at', 'status',]
+    ordering = ['-created_at', 'status',]
+    prepopulated_fields = {"slug": ("title",)}
+    search_fields = ['title', 'description']
+    filter_horizontal = [ 'faculty']
+    date_hierarchy = 'created_at'
+    list_editable = ['status']
+    save_on_top = True
+    list_per_page = 20
+
+    fieldsets = (
+        ("Пост", {
+            'fields': ('title', "description",)
+        }),
+        ("Дополнительно", {
+            'fields': ("banner",)
+        }),
+        ("Параметры", {
+            'fields': ('status', "slug", "created_at", 'faculty')
+        }),
+
+    )
+    save_as = True

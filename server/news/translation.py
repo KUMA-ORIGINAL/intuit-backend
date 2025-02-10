@@ -1,5 +1,5 @@
 from modeltranslation.translator import register, TranslationOptions
-from .models import Post, Category, Image, File
+from .models import Post, Category, Image, File, Event
 
 
 @register(Post)
@@ -17,3 +17,8 @@ class ImageTranslationOptions(TranslationOptions):
 @register(File)
 class ImageTranslationOptions(TranslationOptions):
     fields = ('title',)
+
+
+@register(Event)
+class EventTranslationOptions(TranslationOptions):
+    fields = ('title', 'description')

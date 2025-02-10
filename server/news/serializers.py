@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Post, Category, Image, File
+from .models import Post, Category, Image, File, Event
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -31,5 +31,15 @@ class PostSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'status', 'title', 'slug', 'description', 'date', 'banner',
             'categories', 'images', 'files'
+        )
+        read_only_fields = ('slug',)
+
+
+class EventSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Event
+        fields = (
+            'id', 'status', 'title', 'slug', 'description', 'created_at', 'banner'
         )
         read_only_fields = ('slug',)

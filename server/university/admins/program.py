@@ -35,8 +35,6 @@ class ProgramProfessionsInline(admin.TabularInline):
     verbose_name_plural = 'Профессии которую освоишь в программе'
 
 
-
-
 class ProgramForm(forms.ModelForm):
     subtext_ru = forms.CharField(empty_value='', widget=CKEditorWidget())
     subtext_en = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
@@ -65,7 +63,6 @@ class ProgramAdmin(TabbedTranslationAdmin):
             return mark_safe(f"<img src='{obj.photo.url}' height=100>")
         return ''
     get_photo.short_description = 'Фото'
-
 
 
 @admin.register(TrainingProgram)

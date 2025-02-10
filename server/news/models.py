@@ -70,3 +70,6 @@ class File(models.Model):
 
     def __str__(self):
         return self.title
+
+
+# class Events(models.Model):

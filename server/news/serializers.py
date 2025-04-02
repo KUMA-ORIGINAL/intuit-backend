@@ -21,6 +21,17 @@ class FileSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'file')
 
 
+class PostListSerializer(serializers.ModelSerializer):
+    categories = CategorySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Post
+        fields = (
+            'id', 'status', 'title', 'slug', 'date', 'banner', 'categories',
+        )
+        read_only_fields = ('slug',)
+
+
 class PostSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True, read_only=True)
     images = ImageSerializer(many=True, read_only=True)

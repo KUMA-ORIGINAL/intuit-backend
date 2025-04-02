@@ -12,13 +12,18 @@ class PostPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 100
 
+
 @extend_schema(tags=['News'])
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('faculty',)
-    serializer_class = PostSerializer
     lookup_field = 'slug'
     pagination_class = PostPagination
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return PostListSerializer
+        return PostSerializer
 
     def get_queryset(self):
         return Post.objects.filter(status='active')

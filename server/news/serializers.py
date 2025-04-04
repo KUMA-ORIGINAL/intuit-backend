@@ -27,7 +27,7 @@ class PostListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            'id', 'status', 'title', 'slug', 'date', 'banner', 'categories',
+            'id', 'title', 'slug', 'date', 'banner', 'categories',
         )
         read_only_fields = ('slug',)
 
@@ -40,7 +40,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            'id', 'status', 'title', 'slug', 'description', 'date', 'banner',
+            'id', 'title', 'slug', 'description', 'date', 'banner',
             'categories', 'images', 'files'
         )
         read_only_fields = ('slug',)

@@ -16,6 +16,9 @@ class Program(models.Model):
     training_form = models.CharField(verbose_name="Форма обучения", max_length=255)
     employment = models.CharField(verbose_name="Трудоустройство", max_length=255)
     diploma = models.CharField(verbose_name="Диплом", max_length=255)
+    phone_number = models.CharField(verbose_name="Телефон для связи", max_length=20, blank=True)
+    contract_price = models.DecimalField(verbose_name="Стоимость контракта", max_digits=10, decimal_places=2,
+                                         blank=True, null=True)
 
     education_level = models.ManyToManyField('EducationLevel',
                                         verbose_name="Уровень образования",)

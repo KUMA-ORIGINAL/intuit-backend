@@ -4,6 +4,15 @@ from university.models.faculty import Faculty
 
 
 class FacultySerializer(serializers.ModelSerializer):
+    document_collections = DocumentCollectionSerializer(many=True, read_only=True)
+
     class Meta:
         model = Faculty
         fields = ('id', 'title', 'slug', 'banner', 'subtitle', 'text', 'program_count', 'education_level', 'document_collections')
+
+
+class FacultyListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Faculty
+        fields = ('id', 'title', 'slug', 'program_count')

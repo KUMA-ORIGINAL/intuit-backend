@@ -2,7 +2,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 
 from university.models import Faculty
-from university.serializers.faculty import FacultySerializer
+from university.serializers.faculty import FacultySerializer, FacultyListSerializer
 
 
 @extend_schema(tags=['Faculty'])
@@ -15,8 +15,12 @@ from university.serializers.faculty import FacultySerializer
     )
 )
 class FacultyViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = FacultySerializer
     lookup_field = 'slug'
 
     def get_queryset(self):
         return Faculty.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return FacultyListSerializer
+        return FacultySerializer

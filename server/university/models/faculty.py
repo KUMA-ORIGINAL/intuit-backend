@@ -18,6 +18,8 @@ class Faculty(models.Model):
     program_count = models.PositiveIntegerField(verbose_name="Количество программ",
                                                 default=0,
                                                 blank=True)
+    document_collections = models.ManyToManyField('document_pages.DocumentCollection',
+                                                  verbose_name='Коллекции документов')
     # detail = models.ManyToManyField(to="Detail",
     #                                 verbose_name="Детали")
 

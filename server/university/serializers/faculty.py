@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from document_pages.serializers import DocumentCollectionSerializer
 from university.models.faculty import Faculty
 
 

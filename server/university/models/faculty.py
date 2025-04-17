@@ -19,7 +19,8 @@ class Faculty(models.Model):
                                                 default=0,
                                                 blank=True)
     document_collections = models.ManyToManyField('document_pages.DocumentCollection',
-                                                  verbose_name='Коллекции документов')
+                                                  verbose_name='Коллекции документов',
+                                                  blank=True,)
     # detail = models.ManyToManyField(to="Detail",
     #                                 verbose_name="Детали")
 

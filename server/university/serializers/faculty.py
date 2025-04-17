@@ -16,4 +16,4 @@ class FacultyListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faculty
-        fields = ('id', 'title', 'slug', 'program_count')
+        fields = ('id', 'title', 'subtitle', 'slug', 'program_count')

@@ -14,7 +14,7 @@ class PositionAdmin(TranslationAdmin):
 
 
 class StaffForm(forms.ModelForm):
-    cv_ru = forms.CharField(empty_value='', widget=CKEditorWidget())
+    cv_ru = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
     cv_en = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
     cv_ky = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
 

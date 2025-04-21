@@ -1,6 +1,6 @@
 from ckeditor.widgets import CKEditorWidget
-from django import forms
 from django.contrib import admin
+from django.db import models
 from django.utils.safestring import mark_safe
 from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin
 
@@ -13,19 +13,13 @@ class PositionAdmin(TranslationAdmin):
     list_editable = ["level"]
 
 
-class StaffForm(forms.ModelForm):
-    cv_ru = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
-    cv_en = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
-    cv_ky = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
-
-    class Meta:
-        model = Staff
-        fields = '__all__'
-
-
 @admin.register(Staff)
 class StaffAdmin(TabbedTranslationAdmin):
-    form = StaffForm
+    formfield_overrides = {
+        models.TextField: {
+            "widget": CKEditorWidget,
+        }
+    }
     search_fields   = ["name" ]
     prepopulated_fields = {"slug": ["name"]}
     list_display = ['id', 'name', 'get_photo', "position"]

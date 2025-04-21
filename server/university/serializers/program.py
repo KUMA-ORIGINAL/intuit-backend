@@ -55,7 +55,7 @@ class ProgramFacultySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faculty
-        fields = ('id', 'title', 'slug', 'icon')
+        fields = ('id', 'title', 'subtitle', 'slug', 'icon')
 
 
 class ProgramListSerializer(serializers.ModelSerializer):

@@ -49,7 +49,7 @@ class ProgramEducationLevelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = EducationLevel
-        fields = ('id', 'title', 'slug')
+        fields = ('id', 'title', 'slug', 'icon')
 
 class ProgramFacultySerializer(serializers.ModelSerializer):
 

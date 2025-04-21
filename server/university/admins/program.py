@@ -48,21 +48,27 @@ class ProgramForm(forms.ModelForm):
 @admin.register(Program)
 class ProgramAdmin(TabbedTranslationAdmin):
     form = ProgramForm
-    list_display = ['id', 'title', 'get_photo']
+    list_display = ['id', 'title', 'get_icon', 'get_photo']
     list_display_links = ['id', 'title']
     search_fields = ['title']
     list_filter = ['title']
     prepopulated_fields = {'slug': ['title']}
     list_per_page = 20
-    readonly_fields = ['get_photo']
+    readonly_fields = ['get_icon', 'get_photo']
     filter_horizontal = ['faculty', 'education_level']
     inlines = [ProgramSkillsInline, ProgramToolsInline, ProgramProfessionsInline]
 
     def get_photo(self, obj):
         if obj.photo:
-            return mark_safe(f"<img src='{obj.photo.url}' height=100>")
+            return mark_safe(f"<img src='{obj.photo.url}' width='100px' style='height: auto;'>")
         return ''
-    get_photo.short_description = 'Фото'
+    get_photo.short_description = 'Фото '
+
+    def get_icon(self, obj):
+        if obj.icon:
+            return mark_safe(f"<img src='{obj.icon.url}' width='100px' style='height: auto;'>")
+        return ''
+    get_icon.short_description = 'Иконка'
 
 
 @admin.register(TrainingProgram)
@@ -106,7 +112,7 @@ class ProgramToolsAdmin(TabbedTranslationAdmin):
 
 @admin.register(ProgramProfessions)
 class ProgramProfessionsAdmin(TabbedTranslationAdmin):
-    list_display = ['id', 'name', 'get_photo', 'get_icon', 'get_programs']
+    list_display = ['id', 'name', 'get_photo', 'get_programs']
     list_display_links = ['id', 'name']
     search_fields = ['name']
     filter_horizontal = ('program',)
@@ -120,9 +126,3 @@ class ProgramProfessionsAdmin(TabbedTranslationAdmin):
             return mark_safe(f"<img src='{obj.photo.url}' width='100px' style='height: auto;'>")
         return ''
     get_photo.short_description = 'Фото профессии'
-
-    def get_icon(self, obj):
-        if obj.icon:
-            return mark_safe(f"<img src='{obj.icon.url}' width='100px' style='height: auto;'>")
-        return ''
-    get_icon.short_description = 'Иконка'

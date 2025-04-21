@@ -5,6 +5,7 @@ from django.db import models
 class Program(models.Model):
     title = models.CharField(verbose_name="Название", max_length=250)
     slug = models.SlugField(verbose_name="ссылка")
+    icon = models.FileField(verbose_name='Иконка', upload_to='programs-icons', null=True, blank=True)
     photo = models.FileField(verbose_name="Главная фотка", upload_to='programs')
     text = models.TextField(verbose_name="Заголовок",
                             max_length=250,

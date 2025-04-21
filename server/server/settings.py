@@ -98,7 +98,9 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'common/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -188,6 +190,8 @@ DOMAIN = 'intuit.com'
 SITE_NAME = 'makalabox.team@gmail.com'
 SITE_URL = 'https://muit.makalabox.com'
 
+DEEPL_API_KEY=env('DEEPL_API_KEY')
+
 LANGUAGES = (
     ('ru', 'Russian'),
     ('en', 'English'),
@@ -248,19 +252,23 @@ SPECTACULAR_SETTINGS = {
 
 LOGGING = {
     'version': 1,
+    'disable_existing_loggers': False,  # важно!
+    'formatters': {
+        'verbose': {
+            'format': '[{levelname}] {asctime} {name}: {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'INFO',
+            'formatter': 'verbose',
         },
     },
     'root': {
         'handlers': ['console'],
-    }
+        'level': 'DEBUG',  # показывай всё: DEBUG, INFO, WARNING и т.д.
+    },
 }
 
 JAZZMIN_SETTINGS = {

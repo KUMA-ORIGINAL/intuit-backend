@@ -1,49 +1,30 @@
-from django import forms
 from django.contrib import admin
+from django.db import models
 
 from ckeditor.widgets import CKEditorWidget
 from django.utils.safestring import mark_safe
 from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin
 
+from common.admin import AutoTranslateAdmin
 from .models import Post, Image, File, Category, Event
 
 
-class PostForm(forms.ModelForm):
-    description_ru = forms.CharField(empty_value='', widget=CKEditorWidget())
-    description_en = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
-    description_ky = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
-
-    class Meta:
-        model = Post
-        fields = '__all__'
-
-
 @admin.register(Post)
-class PostAdmin(TabbedTranslationAdmin):
-    form = PostForm
+class PostAdmin(AutoTranslateAdmin):
+    formfield_overrides = {
+        models.TextField: {
+            "widget": CKEditorWidget,
+        }
+    }
     list_display = ["title", "status", "date"]
     list_filter = ['date', 'status', 'categories']
     ordering = ['-date', 'status',]
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ['title', 'description']
-    filter_horizontal = ['categories', 'files', 'images', 'faculty']
     date_hierarchy = 'date'
     list_editable = ['status']
     save_on_top = True
     list_per_page = 20
-
-    fieldsets = (
-        ("Пост", {
-            'fields': ('title', "description",)
-        }),
-        ("Дополнительно", {
-            'fields': ("banner", "images", "files")
-        }),
-        ("Параметры", {
-            'fields': ('status', "slug", "date", "categories", 'faculty')
-        }),
-
-    )
     save_as = True
 
 
@@ -71,20 +52,13 @@ class FileAdmin(TranslationAdmin):
     list_display = ["title", "file"]
 
 
-
-class EventForm(forms.ModelForm):
-    description_ru = forms.CharField(empty_value='', widget=CKEditorWidget())
-    description_en = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
-    description_ky = forms.CharField(required=False, empty_value='', widget=CKEditorWidget())
-
-    class Meta:
-        model = Event
-        fields = '__all__'
-
-
 @admin.register(Event)
 class EventAdmin(TabbedTranslationAdmin):
-    form = EventForm
+    formfield_overrides = {
+        models.TextField: {
+            "widget": CKEditorWidget,
+        }
+    }
     list_display = ["title", "status", "created_at"]
     list_filter = ['created_at', 'status',]
     ordering = ['-created_at', 'status',]

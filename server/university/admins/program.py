@@ -106,7 +106,7 @@ class ProgramToolsAdmin(TabbedTranslationAdmin):
 
 @admin.register(ProgramProfessions)
 class ProgramProfessionsAdmin(TabbedTranslationAdmin):
-    list_display = ['id', 'name', 'get_photo', 'get_programs']
+    list_display = ['id', 'name', 'get_photo', 'get_icon', 'get_programs']
     list_display_links = ['id', 'name']
     search_fields = ['name']
     filter_horizontal = ('program',)
@@ -117,6 +117,12 @@ class ProgramProfessionsAdmin(TabbedTranslationAdmin):
 
     def get_photo(self, obj):
         if obj.photo:
-            return mark_safe(f"<img src='{obj.photo.url}' height=80>")
+            return mark_safe(f"<img src='{obj.photo.url}' width='100px' style='height: auto;'>")
         return ''
     get_photo.short_description = 'Фото профессии'
+
+    def get_icon(self, obj):
+        if obj.icon:
+            return mark_safe(f"<img src='{obj.icon.url}' width='100px' style='height: auto;'>")
+        return ''
+    get_icon.short_description = 'Иконка'

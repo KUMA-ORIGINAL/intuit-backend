@@ -16,4 +16,4 @@ class EducationLevelSerializer(serializers.ModelSerializer):
 class EducationLevelListSerializer(serializers.ModelSerializer):
     class Meta:
         model = EducationLevel
-        fields = ('id', 'title', 'slug', 'faculty_count', 'program_count')
+        fields = ('id', 'title', 'slug', 'icon', 'faculty_count', 'program_count')

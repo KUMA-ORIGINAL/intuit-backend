@@ -64,4 +64,4 @@ class ProgramListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Program
-        fields = ('id', 'title', 'slug', 'education_level', 'faculty')
+        fields = ('id', 'title', 'slug', 'icon', 'education_level', 'faculty')

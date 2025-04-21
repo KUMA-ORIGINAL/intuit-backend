@@ -13,14 +13,24 @@ class AdmissionEligibilityAdmin(TranslationAdmin):
 
 @admin.register(EducationLevel)
 class EducationLevelAdmin(TabbedTranslationAdmin):
-    list_display = ['id', 'title', "get_photo"]
+    list_display = ['id', 'title', 'get_icon', "get_banner"]
     list_display_links = ['id', 'title']
     search_fields = ["title"]
     list_filter = ["title"]
     prepopulated_fields = {"slug": ["title"]}
     list_per_page = 20
-    readonly_fields = ["get_photo"]
+    readonly_fields = ['get_icon', "get_banner"]
 
-    def get_photo(self, object):
-        if object.banner:
-            return mark_safe(f"<img src='{object.banner.url}' height=80>")
+    def get_banner(self, obj):
+        if obj.banner:
+            return mark_safe(f"<img src='{obj.banner.url}' width='100px' style='height: auto;'>")
+        return ''
+
+    get_banner.short_description = 'Баннер'
+
+    def get_icon(self, obj):
+        if obj.icon:
+            return mark_safe(f"<img src='{obj.icon.url}' width='100px' style='height: auto;'>")
+        return ''
+
+    get_icon.short_description = 'Иконка'

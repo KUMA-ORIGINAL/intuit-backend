@@ -9,11 +9,11 @@ class FacultySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faculty
-        fields = ('id', 'title', 'slug', 'banner', 'subtitle', 'text', 'program_count', 'education_level', 'document_collections')
+        fields = ('id', 'title', 'slug', 'icon', 'banner', 'subtitle', 'text', 'program_count', 'education_level', 'document_collections')
 
 
 class FacultyListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faculty
-        fields = ('id', 'title', 'subtitle', 'slug', 'program_count')
+        fields = ('id', 'title', 'subtitle', 'slug', 'icon', 'program_count')

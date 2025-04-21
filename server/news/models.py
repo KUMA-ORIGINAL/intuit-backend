@@ -8,18 +8,15 @@ class Post(models.Model):
         ("passive", "не активен")
     )
 
-    status = models.CharField(verbose_name="Статус", choices=STATUS_CHOICES, max_length=15, default="passive")
-
     title = models.CharField(verbose_name="Название", max_length=250)
     slug = models.SlugField(verbose_name="Ссылка", unique_for_date='date')
     description = models.TextField(verbose_name="Текст")
-
     date = models.DateTimeField(verbose_name="Дата", default=timezone.now)
-
-    banner = models.FileField(verbose_name="Баннер", upload_to="news/banners/%Y/%m/%d")
     categories = models.ManyToManyField('Category', related_name='posts', verbose_name='Категории')
+    status = models.CharField(verbose_name="Статус", choices=STATUS_CHOICES, max_length=15, default="passive")
     faculty = models.ManyToManyField('university.Faculty', related_name='posts',
                                      verbose_name='Категории2', blank=True)
+    banner = models.FileField(verbose_name="Баннер", upload_to="news/banners/%Y/%m/%d")
     images = models.ManyToManyField('Image', related_name='posts', verbose_name='Фотографии',
                                     blank=True)
     files = models.ManyToManyField('File', related_name='posts', verbose_name='Файлы', blank=True)

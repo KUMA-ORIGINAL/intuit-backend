@@ -18,6 +18,7 @@ class EducationLevel(models.Model):
     slug = models.SlugField(verbose_name="ссылка")
     subtitle = models.CharField(verbose_name="Под название", max_length=255,
                                 blank=True)
+    icon = models.FileField(verbose_name='Иконка', upload_to='education-levels-icons', null=True, blank=True)
     banner = models.FileField(verbose_name="баннер", upload_to='education-levels')
 
     text = models.TextField(verbose_name="Главный текст")

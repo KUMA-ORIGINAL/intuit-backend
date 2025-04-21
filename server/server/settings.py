@@ -190,7 +190,7 @@ DOMAIN = 'intuit.com'
 SITE_NAME = 'makalabox.team@gmail.com'
 SITE_URL = 'https://muit.makalabox.com'
 
-DEEPL_API_KEY=env('DEEPL_API_KEY')
+# DEEPL_API_KEY=env('DEEPL_API_KEY')
 
 LANGUAGES = (
     ('ru', 'Russian'),

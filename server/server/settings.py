@@ -71,6 +71,8 @@ INSTALLED_APPS = [
     'django_filters',
     'mptt',
     'ckeditor',
+    'import_export',
+    'cachalot',
 
     'news.apps.NewsConfig',
     'university.apps.UniversityConfig',
@@ -176,6 +178,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# OPENAI_API_KEY = env('OPENAI_API_KEY')
+
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
@@ -212,6 +216,19 @@ MODELTRANSLATION_AUTO_POPULATE = True
 # EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 # EMAIL_USE_TLS = True
 # EMAIL_PORT = 587
+
+CACHALOT_ENABLED = True  # включить/отключить глобально
+CACHALOT_TIMEOUT = None
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
@@ -276,4 +293,3 @@ JAZZMIN_SETTINGS = {
     "changeform_format_overrides": {"university.trainingprogram": "single",
                                     'document_pages.documentcollection': 'single'},
 }
-

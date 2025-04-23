@@ -15,6 +15,7 @@ services:
       - '8000:8000'
     depends_on:
       - database
+      - redis
 
   database:
     container_name: database_container
@@ -25,6 +26,20 @@ services:
       - '5555:5432'
     volumes:
       - database-storage:/var/lib/postgresql/data
+
+  redis:
+    image: redis
+    container_name: intuit-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      interval: 1s
+      timeout: 3s
+      retries: 5
 
 #  pgadmin:
 #    container_name: pgadmin_container
@@ -48,4 +63,5 @@ services:
 
 volumes:
   database-storage:
+  redis_data:
 #  pgadmin-data:

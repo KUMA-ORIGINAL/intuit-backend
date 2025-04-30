@@ -30,6 +30,7 @@ services:
   redis:
     image: redis
     container_name: intuit-redis
+    command: ["redis-server", "--replicaof", "no", "one"]
     restart: always
     ports:
       - "6379:6379"
@@ -40,7 +41,6 @@ services:
       interval: 1s
       timeout: 3s
       retries: 5
-
 #  pgadmin:
 #    container_name: pgadmin_container
 #    image: dpage/pgadmin4:7.2

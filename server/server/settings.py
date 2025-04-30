@@ -218,7 +218,7 @@ MODELTRANSLATION_AUTO_POPULATE = True
 # EMAIL_PORT = 587
 
 CACHALOT_ENABLED = True  # включить/отключить глобально
-CACHALOT_TIMEOUT = None
+CACHALOT_TIMEOUT = 7200
 
 CACHES = {
     'default': {

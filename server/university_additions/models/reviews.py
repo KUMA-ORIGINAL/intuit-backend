@@ -10,10 +10,10 @@ class StudentReview(models.Model):
     faculty = models.ManyToManyField(verbose_name="Институты",
                                      to=Faculty,
                                      related_name="student_reviews",
-                                     null=True, blank=True)
+                                     blank=True)
     education_level = models.ManyToManyField(verbose_name='Уровни образования',
                                              to=EducationLevel,
-                                             null=True, blank=True)
+                                             blank=True)
 
     class Meta:
         verbose_name = 'Отзыв студента'
@@ -32,11 +32,10 @@ class StudentSpeak(models.Model):
     faculty = models.ManyToManyField(verbose_name="Институты",
                                      to=Faculty,
                                      related_name="student_speakers",
-                                     null=True, blank=True)
+                                     blank=True)
     education_level = models.ManyToManyField(verbose_name='Уровни образования',
                                              to=EducationLevel,
-                                             blank=True,
-                                             null=True)
+                                             blank=True)
 
     class Meta:
         verbose_name = 'Говор студента'

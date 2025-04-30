@@ -29,7 +29,7 @@ class Staff(models.Model):
                                  on_delete=models.CASCADE, default=2, related_name='teachers')
     faculty = models.ManyToManyField(to='Faculty',
                                      verbose_name="Факультеты",
-                                     related_name='teachers', null=True, blank=True)
+                                     related_name='teachers', blank=True)
     rank = models.CharField(verbose_name="Статус", max_length=50,
                             choices=RANK_CHOISE, default="no")
 

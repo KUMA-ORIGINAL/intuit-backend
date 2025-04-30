@@ -223,7 +223,7 @@ CACHALOT_TIMEOUT = None
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://redis:6379/1',
+        'LOCATION': 'redis://intuit-redis:6379/1',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
@@ -267,24 +267,42 @@ SPECTACULAR_SETTINGS = {
 #     }
 # }
 
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,  # важно!
+#     'formatters': {
+#         'verbose': {
+#             'format': '[{levelname}] {asctime} {name}: {message}',
+#             'style': '{',
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',  # показывай всё: DEBUG, INFO, WARNING и т.д.
+#     },
+# }
+
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,  # важно!
-    'formatters': {
-        'verbose': {
-            'format': '[{levelname}] {asctime} {name}: {message}',
-            'style': '{',
-        },
-    },
+    'disable_existing_loggers': False,
     'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
+        'console': {'class': 'logging.StreamHandler'},
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'DEBUG',  # показывай всё: DEBUG, INFO, WARNING и т.д.
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'cachalot': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # можно INFO
+        },
     },
 }
 

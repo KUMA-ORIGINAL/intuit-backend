@@ -17,8 +17,10 @@ services:
       - static_volume:/app/application/static
       - media_volume:/app/application/media
     depends_on:
-      - database
-      - redis
+      database:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
   database:
     image: postgres:16.2-alpine3.18
@@ -26,13 +28,24 @@ services:
     restart: unless-stopped
     volumes:
       - database-storage:/var/lib/postgresql/data
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
 
   redis:
     image: redis
     container_name: intuit-redis
     restart: always
     ports:
-      - "6379:6379"
+      - '127.0.0.1:6379:6379'
     volumes:
       - redis_data:/data
     command: redis-server --replicaof no one --maxmemory-policy noeviction

@@ -15,11 +15,6 @@ class PositionAdmin(TranslationAdmin):
 
 @admin.register(Staff)
 class StaffAdmin(TabbedTranslationAdmin):
-    formfield_overrides = {
-        models.TextField: {
-            "widget": CKEditorWidget,
-        }
-    }
     search_fields   = ["name" ]
     prepopulated_fields = {"slug": ["name"]}
     list_display = ['id', 'name', 'get_photo', "position"]
@@ -30,6 +25,11 @@ class StaffAdmin(TabbedTranslationAdmin):
 
     readonly_fields = ["get_photo"]
     save_as = True
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name in ['cv',]:  # 👈 укажи нужные поля
+            kwargs['widget'] = CKEditorWidget()
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     def get_photo(self, object):
         if object.image:

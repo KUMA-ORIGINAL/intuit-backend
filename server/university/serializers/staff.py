@@ -17,5 +17,5 @@ class StaffSerializer(serializers.ModelSerializer):
     class Meta:
         model = Staff
         fields = ('id', 'name',  'slug', 'position', 'rank', 'status', 'description',
-                  'image', 'whatsapp', 'facebook', 'telegram', 'instagram', 'youtube',
+                  'image', 'whatsapp', 'facebook', 'telegram', 'instagram', 'youtube', 'email',
                   'curriculum_vitae', 'cv', 'qr_code', 'faculty')

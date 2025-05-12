@@ -68,6 +68,7 @@ class Staff(models.Model):
         help_text="Введите ссылку на профиль (не обязательное полое)",
         max_length=100,
         blank=True)
+    email = models.EmailField(max_length=255, blank=True)
 
     curriculum_vitae = models.FileField(
         verbose_name="Сurriculum Vitae",

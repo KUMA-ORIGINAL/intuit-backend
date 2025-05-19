@@ -70,16 +70,4 @@ class EventAdmin(TabbedTranslationAdmin):
     list_per_page = 20
     readonly_fields = ['created_at',]
 
-    fieldsets = (
-        ("Пост", {
-            'fields': ('title', 'slug', "description",)
-        }),
-        ("Дополнительно", {
-            'fields': ("banner",)
-        }),
-        ("Параметры", {
-            'fields': ('status', "created_at", 'faculty')
-        }),
-
-    )
     save_as = True

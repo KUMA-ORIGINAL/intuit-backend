@@ -85,6 +85,8 @@ class Event(models.Model):
                                      verbose_name='Категории2', blank=True)
     created_at = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
 
+    link = models.URLField(verbose_name="Внешняя ссылка", blank=True, null=True)
+
     class Meta:
         ordering = ('-created_at',)
         verbose_name = "Мероприятие"

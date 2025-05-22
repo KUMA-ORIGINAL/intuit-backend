@@ -1,4 +1,6 @@
 import logging
+import re
+
 import httpx
 from django.conf import settings
 
@@ -16,7 +18,7 @@ def send_telegram_message(text: str) -> None:
     payload = {
         "chat_id": chat_id,
         "text": text,
-        "parse_mode": "HTML",
+        "parse_mode": "MarkdownV2",
     }
 
     try:
@@ -31,3 +33,10 @@ def send_telegram_message(text: str) -> None:
         logger.exception("Сетевая ошибка при отправке в Telegram: %s", exc)
     except Exception as e:
         logger.exception("Неизвестная ошибка при отправке Telegram-сообщения: %s", e)
+
+def escape_markdown(text: str) -> str:
+    """
+    Экранирует спецсимволы для Telegram MarkdownV2.
+    """
+    escape_chars = r"_*[]()~`>#+-=|{}.!\\"
+    return re.sub(f"([{re.escape(escape_chars)}])", r"\\\1", str(text))

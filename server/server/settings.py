@@ -194,7 +194,9 @@ DOMAIN = 'intuit.com'
 SITE_NAME = 'makalabox.team@gmail.com'
 SITE_URL = 'https://muit.makalabox.com'
 
-# DEEPL_API_KEY=env('DEEPL_API_KEY')
+TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN')
+TELEGRAM_CHAT_ID = env('TELEGRAM_CHAT_ID')
+
 
 LANGUAGES = (
     ('ru', 'Russian'),

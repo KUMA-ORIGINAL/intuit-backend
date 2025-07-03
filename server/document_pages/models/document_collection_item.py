@@ -7,11 +7,12 @@ class DocumentCollectionItem(models.Model):
     document_collection = models.ForeignKey('DocumentCollection',
                                             on_delete=models.CASCADE,
                                             related_name='document_collection_items')
+    order = models.PositiveIntegerField(default=0, verbose_name='Порядок', blank=True)
 
     class Meta:
         verbose_name = 'Документ'
         verbose_name_plural = 'Документы'
-
+        ordering = ['order']
 
     def __str__(self):
         return self.name

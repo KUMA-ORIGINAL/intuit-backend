@@ -22,7 +22,6 @@ class DocumentPageAdmin(TabbedTranslationAdmin):
     form = DocumentPageForm
     list_display = ('title', 'subtitle', 'photo_preview')
     prepopulated_fields = {"slug": ("title",)}
-    filter_horizontal = ('document_collections',)
 
     def photo_preview(self, object):
         if object.photo:

@@ -9,7 +9,7 @@ class Post(models.Model):
     )
 
     title = models.CharField(verbose_name="Название", max_length=250)
-    slug = models.SlugField(verbose_name="Ссылка", unique_for_date='date')
+    slug = models.SlugField(verbose_name="Ссылка", unique=True, max_length=250)
     description = models.TextField(verbose_name="Текст")
     date = models.DateTimeField(verbose_name="Дата", default=timezone.now)
     categories = models.ManyToManyField('Category', related_name='posts', verbose_name='Категории')
@@ -78,7 +78,7 @@ class Event(models.Model):
     status = models.CharField(verbose_name="Статус", choices=STATUS_CHOICES, max_length=15,
                               default="passive")
     title = models.CharField(verbose_name="Название", max_length=250)
-    slug = models.SlugField(verbose_name="Ссылка")
+    slug = models.SlugField(verbose_name="Ссылка", max_length=250, unique=True)
     description = models.TextField(verbose_name="Текст")
     banner = models.FileField(verbose_name="Баннер", upload_to="events/banners/%Y/%m/%d")
     faculty = models.ManyToManyField('university.Faculty', related_name='events',

@@ -22,7 +22,7 @@ class UserApplicationViewSet(viewsets.GenericViewSet,
         instance = serializer.save()
         send_telegram_message(
             f"📝 Новая заявка на обучение:\n\n"
-            f"<b>Имя:</b> {instance.full_name}\n"
+            f"<b>Имя:</b> {instance.user}\n"
             f"<b>Email:</b> {instance.email}\n"
             f"<b>Номер телефона:</b> {instance.phone}\n"
             f"<b>Страница:</b> {instance.slug}\n"

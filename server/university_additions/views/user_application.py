@@ -26,5 +26,4 @@ class UserApplicationViewSet(viewsets.GenericViewSet,
             f"<b>Email:</b> {instance.email}\n"
             f"<b>Номер телефона:</b> {instance.phone}\n"
             f"<b>Страница:</b> {instance.slug}\n"
-            f"<b>Комментарий</b> {instance.comment}\n"
         )

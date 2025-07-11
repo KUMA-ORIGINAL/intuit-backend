@@ -269,41 +269,36 @@ SPECTACULAR_SETTINGS = {
 #     }
 # }
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,  # важно!
-#     'formatters': {
-#         'verbose': {
-#             'format': '[{levelname}] {asctime} {name}: {message}',
-#             'style': '{',
-#         },
-#     },
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'verbose',
-#         },
-#     },
-#     'root': {
-#         'handlers': ['console'],
-#         'level': 'DEBUG',  # показывай всё: DEBUG, INFO, WARNING и т.д.
-#     },
-# }
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s",
+        },
+    },
     'handlers': {
-        'console': {'class': 'logging.StreamHandler'},
+        'console': {
+            'level': 'INFO',  # Можно изменить на 'DEBUG' для более подробного вывода
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'level': 'INFO',  # Логи с уровнем DEBUG и выше будут записываться в файл
+            'class': 'logging.FileHandler',
+            'filename': 'django_app.log',
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
-        'django': {
-            'handlers': ['console'],
+        # 'django.db.backends': {
+        #     'level': 'DEBUG',
+        #     'handlers': ['console'],
+        # },
+        'root': {
+            'handlers': ['console', 'file'],
             'level': 'INFO',
-        },
-        'cachalot': {
-            'handlers': ['console'],
-            'level': 'DEBUG',  # можно INFO
+            'propagate': True,
         },
     },
 }

@@ -1,42 +1,31 @@
-import logging
-import re
-
-import httpx
+import requests
+import time
 from django.conf import settings
+import logging
 
 logger = logging.getLogger(__name__)
 
-def send_telegram_message(text: str) -> None:
-    token = getattr(settings, "TELEGRAM_BOT_TOKEN", None)
-    chat_id = getattr(settings, "TELEGRAM_CHAT_ID", None)
 
-    if not token or not chat_id:
-        logger.warning("Telegram token или chat_id не сконфигурированы.")
-        return
-
-    url = f"https://api.telegram.org/bot{token}/sendMessage"
-    payload = {
-        "chat_id": chat_id,
+def send_telegram_message(text, retries=3, delay=2):
+    url = f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_TOKEN}/sendMessage"
+    data = {
+        "chat_id": settings.TELEGRAM_CHAT_ID,
         "text": text,
-        "parse_mode": "MarkdownV2",
+        "parse_mode": "HTML",
     }
-
-    try:
-        response = httpx.post(url, data=payload, timeout=5)
-        if response.status_code != 200:
-            logger.error(
-                "Ошибка при отправке Telegram-сообщения: %s | Ответ: %s",
-                response.status_code,
-                response.text,
-            )
-    except httpx.RequestError as exc:
-        logger.exception("Сетевая ошибка при отправке в Telegram: %s", exc)
-    except Exception as e:
-        logger.exception("Неизвестная ошибка при отправке Telegram-сообщения: %s", e)
-
-def escape_markdown(text: str) -> str:
-    """
-    Экранирует спецсимволы для Telegram MarkdownV2.
-    """
-    escape_chars = r"_*[]()~`>#+-=|{}.!\\"
-    return re.sub(f"([{re.escape(escape_chars)}])", r"\\\1", str(text))
+    last_exception = None
+    for attempt in range(1, retries + 1):
+        try:
+            response = requests.post(url, data=data, timeout=5)
+            result = response.json()
+            if result.get("ok"):
+                logger.info(f"Telegram message sent successfully on attempt {attempt}")
+                return True
+            else:
+                logger.error(f"Telegram API error on attempt {attempt}: {result}")
+        except Exception as e:
+            last_exception = e
+            logger.error(f"Telegram send error on attempt {attempt}: {e}")
+        time.sleep(delay)
+    logger.critical(f"Telegram message NOT sent after {retries} attempts. Last exception: {last_exception}")
+    return False

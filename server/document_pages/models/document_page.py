@@ -8,7 +8,7 @@ class DocumentPage(models.Model):
     photo = models.FileField(verbose_name="Фото", upload_to="document_pages/photos/%Y/%m/")
     content = models.TextField(verbose_name='Контент')
     document_collections = models.ManyToManyField('DocumentCollection',
-                                                  verbose_name='Коллекции документов')
+                                                  verbose_name='Коллекции документов', blank=True)
 
     class Meta:
         verbose_name = "Страница документов"

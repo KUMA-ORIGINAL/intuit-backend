@@ -16,7 +16,7 @@ class PostPagination(PageNumberPagination):
 @extend_schema(tags=['News'])
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('faculty',)
+    filterset_fields = ('faculty', 'categories')
     lookup_field = 'slug'
     pagination_class = PostPagination
 
@@ -32,7 +32,7 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
 @extend_schema(tags=['Events'])
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('faculty',)
+    filterset_fields = ('faculty', 'categories')
     serializer_class = EventSerializer
     lookup_field = 'slug'
 

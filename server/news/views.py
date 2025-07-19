@@ -32,7 +32,7 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
 @extend_schema(tags=['Events'])
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('faculty', 'categories')
+    filterset_fields = ('faculty',)
     serializer_class = EventSerializer
     lookup_field = 'slug'
 
